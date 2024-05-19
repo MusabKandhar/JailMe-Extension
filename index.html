@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn Back to Allah SWT</title>
+</head>
+<body>
+    <h1>Jail me, turn back to Allah SWT</h1>
+    <button id="lockButton">Lock Browser</button>
+
+    <script>
+        document.getElementById('lockButton').addEventListener('click', function() {
+            chrome.storage.local.set({ isLocked: true }, function() {
+                alert('Browser locked!');
+            });
+        });
+
+        // Update the lock button text based on current lock status
+        chrome.storage.local.get(['isLocked'], function(result) {
+            if (result.isLocked) {
+                document.getElementById('lockButton').innerText = "Unlock Browser";
+            } else {
+                document.getElementById('lockButton').innerText = "Lock Browser";
+            }
+        });
+    </script>
+</body>
+</html>
